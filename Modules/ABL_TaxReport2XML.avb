@@ -1,0 +1,287 @@
+Option Explicit
+'#include "ST74_XML.avb"
+'#include "ST74_FileDlg.avb"
+
+Const NAME_EXPR = "EXPR"
+Const NAME_CALC = "="
+Const NAME_REPEAT = "REPEAT"
+Const NAME_TEXT = "TEXT"
+Const NAME_CHOICE = "CHOICE"
+Const NAME_SCRIPT = "SCRIPT"
+
+Const NAME_MINOCCURS = "MINOCCURS"
+Const NAME_NILLABLE = "NILLABLE"
+Const NAME_SELF = "SELF"
+Const NAME_DESCR = "DESCR"
+
+Const SCRIT_DELIMITER = ";"
+
+Const MSG_BOX_CAPTION = "Экспорт документов в XML"
+
+Dim oXML, resXML
+Dim Com, Op
+
+'---
+'
+'---
+Sub xmlExportDoc(prm)
+	Dim TemplateFileName, ResultFileName, SaveMode
+
+	Set Op = prm(0)
+	TemplateFileName = prm(1)
+	Set Com = prm(2)
+
+	Set oXML = New XML
+	oXML.xmlFileName = TemplateFileName
+
+	If oXML.Load() Then
+		Set resXML = New XML
+		If Not resXML.Create Then
+			MsgBox resXML.ErrorMsg, vbExclamation, MSG_BOX_CAPTION
+		Else	
+			LoadLevel oXML.xml.ChildNodes, resXML.xml, resXML.xml, 0, Nothing
+			ResultFileName = com.ResultFileName(resXML.xml)
+
+			If Not prm(4) Then
+				SaveMode = MsgBox("Файл сформирован." & vbNewLine & _
+												"Сохранить его в папку по умолчанию (Да), "  & vbNewLine & _
+												"выбрать папку (Нет) " & vbNewLine & _
+												"или отказаться от сохранения (Отмена) ?", vbQuestion + vbYesNoCancel, MSG_BOX_CAPTION)
+			Else
+				SaveMode = vbYes
+			End If
+
+			If SaveMode = vbCancel Then Exit Sub
+			If SaveMode = vbNo Then 
+				If Not OpenFileSave(ResultFileName, "", "*.xml", "XML-файлы", "Выберите папку для сохранения файла ") Then Exit Sub
+			End If
+
+			If Not resXML.Save(ResultFileName, "*.xml") Then
+				MsgBox "Ошибка сохранения файла " & ResultFileName & vbNewLine & resXML.ErrorMsg, vbYesNoCancel	, MSG_BOX_CAPTION
+			Else
+				If Not prm(4) Then MsgBox "Файл сохранен" & vbNewLine & ResultFileName, vbInformation, MSG_BOX_CAPTION
+
+				If prm(3) <> "" Then
+					resXML.xsdFileName = prm(3)
+	
+					If Not resXML.XSD_Validate(ResultFileName) Then
+						MsgBox "XML документ не прошел проверку по схеме." & vbNewLine & resXML.ErrorMsg, vbCritical, MSG_BOX_CAPTION & ": № " & Op.DocNo & " " & formatdate2(Op.Date, "dd mmmm yyyy")
+					Else
+						Op.Tag = Formatdate2(Op.Date, "Экспортирован: dd mmmm yyyy")
+						Op.Save 8 + 16
+					End If
+				End If
+			End If
+		End If
+	Else
+		MsgBox oXML.ErrorMsg, vbExclamation, MSG_BOX_CAPTION
+	End If
+End Sub
+'---
+'
+'---
+Sub SetSpecAttr(MinOccurrs, Nillable, NodeFrom, NodeDescr)
+	MinOccurrs = iif(checknull(NodeFrom.GetAttribute("minOccurs"), "1") = "0", True, False)	' true - можно пропустить, false - нет
+	Nillable = (checknull(NodeFrom.GetAttribute("nillable"), "false") = "true")	' true - может иметь пустые значения, false - нет
+	NodeDescr = checknull(NodeFrom.GetAttribute("descr"), "")
+End Sub
+'---
+'
+'---
+Sub LoadLevel(NodesFrom, XmlTo, NodeTo, ByVal Row, Elem)
+	Dim i, NewNode, NodeFrom, NodeText, NodeName, NodeDescr
+	Dim n, IsAppend, RowNo, NewElem, MinOccurrs, NoChildren, Nillable
+	Dim LineNo
+
+	For i = 0 To NodesFrom.Length - 1
+		IsAppend = True
+		NoChildren = False
+
+		Set NodeFrom = NodesFrom.Item(i)
+
+		Select Case NodeFrom.NodeType
+			Case 1
+				SetSpecAttr MinOccurrs, Nillable, NodeFrom, NodeDescr
+				If NodeDescr <> "" Then
+					resXML.AddDescription NodeFrom.NodeName, NodeDescr
+				End If
+
+				Select Case UCase(NodeFrom.NodeName)
+					Case NAME_SCRIPT
+						IsAppend = False
+						RunScript NodeFrom.Text
+						
+					Case NAME_REPEAT
+						IsAppend = False
+						n = Eval(NodeFrom.GetAttribute("ROWS"))
+				
+						For RowNo = 1 To n
+							Set NewElem = Eval(NodeFrom.GetAttribute("ELEM"))
+							LoadLevel NodeFrom.ChildNodes, XmlTo, NodeTo, RowNo, NewElem
+						Next
+
+					Case NAME_CHOICE
+						Set NewNode = ChoiceNode(NodeFrom, XmlTo, Elem, NodeText, MinOccurrs, Nillable, NodeDescr, Row)
+						IsAppend = Not (NewNode Is Nothing)
+						NoChildren = True
+
+					Case Else
+						Set NewNode = XmlTo.CreateElement(NodeFrom.NodeName)
+						NodeText = NodeFrom.Text
+						AddAttributes NodeFrom, NewNode, NodeText, Elem, Row
+						NewNode.Text = NodeText
+				End Select
+
+			Case 7
+				Set NewNode = XmlTo.createProcessingInstruction(NodeFrom.NodeName, NodeFrom.Text)
+			Case Else
+				IsAppend = False
+				'Exit Sub
+		End Select
+
+		If isAppend Then
+			If NodeText = "" And NodeFrom.NodeType = 1 Then
+				If Not MinOccurrs Then
+					If Not Nillable Then NewNode.SetAttribute "xsi:nil", "true"
+					NodeTo.AppendChild NewNode
+				End If
+			Else	
+				NodeTo.AppendChild NewNode
+			End If
+
+			If NodeFrom.ChildNodes.length > 0 And Not NoChildren Then
+				LoadLevel NodeFrom.ChildNodes, XmlTo, NewNode, Row, Elem
+			End If
+		End If
+	Next
+
+End Sub
+'---
+'
+'---
+Sub RunScript(Cmd)
+	Dim i, aCmd
+
+	aCmd = Split(Cmd, SCRIT_DELIMITER)
+	
+	For i = 0 To UBound(aCmd)
+		Execute aCmd(i)
+	Next
+
+End Sub
+'---
+'
+'---
+Sub AddAttributes(NodeFrom, NewNode, NodeText, Elem, RowNo)
+	Dim i, AttrValue
+			
+	With NodeFrom.Attributes
+		For i = 0 To .Length - 1
+			With .Item(i)
+				If (UCase(.Name) <> NAME_MINOCCURS) And _
+					(UCase(.Name) <> NAME_NILLABLE) And _
+					(UCase(.Name) <> NAME_DESCR) Then
+
+					If .Value <> "" Then
+						Select Case UCase(.name)
+							Case NAME_EXPR
+								If UCase(.value) = NAME_SELF Then 
+									NodeText = Eval("com." & NodeFrom.NodeName)
+								Else
+									NodeText = Eval(Replace(.Value, "'", Chr(34)))
+								End If
+
+							Case NAME_TEXT
+								NodeText = .Value
+
+							Case Else
+								AttrValue = .Value
+	
+								If Left(AttrValue, 1) = NAME_CALC Then
+									AttrValue = Eval(Mid(AttrValue, 2))
+								End If
+								NewNode.SetAttribute .Name, AttrValue
+						End Select
+					Else
+						NewNode.SetAttribute .Name, .Value
+					End If		
+				End If
+			End With
+		Next
+	End With
+End Sub
+'---
+'
+'---
+Function ChoiceNode(NodeFrom, XmlTo, Elem, NodeText, MinOccurrs, Nillable, NodeDescr, Row)
+	Dim i, NewNode, NodeFromItem
+
+	With NodeFrom.ChildNodes
+		For i = 0 To .Length - 1
+			Set NodeFromItem = .Item(i)
+			SetSpecAttr MinOccurrs, Nillable, NodeFrom, NodeDescr
+
+			Set NewNode = XmlTo.CreateElement(NodeFromItem.NodeName)
+
+			NodeText = NodeFromItem.Text
+			AddAttributes NodeFromItem, NewNode, NodeText, Elem, Row
+			NewNode.Text = NodeText
+
+			If NodeText <> "" Then
+				Set ChoiceNode = NewNode
+				Exit Function
+			End If
+
+		Next
+	End With
+
+	Set ChoiceNode = Nothing
+End Function
+'---
+'
+'	0 - операция для экспорта 
+'	1 - имя файла или XML строка для шаблона
+'	2 - объект tax_common_class
+'	3 - корневой XML
+'	4 - название тега, который добавляется
+'	5 - результат
+'---
+Sub xmlExportDocNode(prm)
+	Dim TemplateFileName, IsError, Elem
+
+	Set prm(5) = Nothing
+
+	Set oXML = New XML
+
+	Set Op = prm(0)
+	Set Com = prm(2)
+
+	If IsFileExists(prm(1)) Then
+		oXml.xmlFileName = prm(1)
+		IsError = Not oXML.Load()
+	Else
+		IsError = Not oXML.LoadXML(prm(1))	
+	End If
+
+	If Not IsError Then
+		If prm(3) Is Nothing Then
+			Set resXML = New XML
+
+			If Not resXML.Create Then
+				MsgBox resXML.ErrorMsg, vbExclamation, MSG_BOX_CAPTION
+			Else
+				LoadLevel oXML.xml.ChildNodes, resXML.xml, resXML.xml, 0, Nothing
+				Set prm(5) = resXML.xml
+			End If
+		Else
+			Set resXML = prm(3)
+			LoadLevel oXML.xml.ChildNodes, resXML, prm(4), 0, Nothing
+			Set prm(5) = prm(4)
+		End If	
+	Else
+		MsgBox oXML.ErrorMsg, vbExclamation, MSG_BOX_CAPTION
+	End If
+End Sub 
+'---
+'
+'---

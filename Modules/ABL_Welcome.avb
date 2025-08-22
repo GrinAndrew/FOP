@@ -1,0 +1,46 @@
+Option Explicit
+
+'--------------
+'
+'--------------
+Function GetFullPath(FileName)
+	Dim RD
+	
+	Set RD = CreateLibObject("Redirect")
+	GetFullPath = RD.GetFullPath(FileName)
+
+End Function
+
+'--------------
+'
+'--------------
+Sub Welcome
+	Dim HTMLDlg
+
+	Set HTMLDlg = CreateLibObject("DHTMLdialog")
+
+	With HTMLDlg
+		.Width = 600
+		.Height = 430
+		.URL = GetFullPath("ABL_Welcome.htm")
+
+		If .URL = "" Then 
+			MsgBox 	"Не удалось найти ABL_Welcome.htm" & vbCrLf & _
+						"Возможно, проблема в том, что не настроен путь доступа к каталогу HELP." & vbCrLf & _
+						"Проверьте в Сервис|Настройка|Расположение файлов наличие строки '*.htm = #data\..\help'", _
+						vbExclamation, "Внимание !"
+		Else
+			Set WorkArea.Map.Item("Welcome") = HTMLDlg
+			Set WorkArea.Map.Item("WinAPI") = CreateLibObject("WinAPI")
+			WorkArea.Map("WhatsNew") = "ABL_whatsnew.chm"
+			WorkArea.Map("Help") = "ABL.chm"
+			WorkArea.Map("URL") = "http://www.accent.ua"
+			.SetArgument "WA", App.WorkArea
+			.Caption = "Добро пожаловать !"
+			.createmodeless
+		End If
+	End With
+End Sub
+'--------------
+'
+'--------------

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="windows-1251"?>
+<Reports>
+	<report 
+		period="quart" 
+		imageno="47" 
+		name="ПОДАТКОВА ДЕКЛАРАЦІЯ ПЛАТНИКА ЄДИНОГО ПОДАТКУ ТРЕТЬОЇ ГРУПИ НА ПЕРІОД ДІЇ ВОЄННОГО, НАДЗВИЧАЙНОГО СТАНУ В УКРАЇНІ" 
+		cmd="F0103203.ash"
+		taxform="ФОП_3"
+		start="01.01.2024"
+		finished=""
+		>
+	</report>
+	
+
+</Reports>

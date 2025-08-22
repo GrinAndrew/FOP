@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<DECLAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<DECLARHEAD TEXT=" ">
+		<D_FILL field="" expr="Op.Date=cDate(left(&quot;@&quot;, 2) + chr(45) + mid(&quot;@&quot;, 3, 2) + chr(45) + right(&quot;@&quot;, 4))" type="date"/>
+	</DECLARHEAD>
+	<DECLARBODY>
+		<CHOICE>
+			<HERPN0 field="map" key="HERPN0" descr="Підлягає реєстрації в ЄРПН постачальником (продавцем)"/>
+			<HERPN field="map" key="HERPN" descr="Підлягає реєстрації в ЄРПН отримувачем (покупцем)"/>
+		</CHOICE>
+
+		<R01G1 field="map" key="R01G1" descr="До зведеної податкової накладної"/>
+		<R03G10S field="map" key="R03G10S" descr="До податкової накладної, складеної на операції, звільнені від оподаткування"/>
+		<HORIG1 field="map" key="HORIG1" descr="Не підлягає наданню отримувачу (покупцю) з причини"/>
+		<HTYPR field="map" key="HTYPR" descr="зазначається відповідний тип причини"/>
+
+		<R001G1D field="map" key="R001G1D" type="date" descr="договір (контракт) дата"/>
+		<R001G2S field="map" key="R001G2S" type="string" descr="договір (контракт) номер"/>
+		<R001G3 field="map" key="R001G3" type="int" descr="договір (контракт) відмітка про форвардний контракт"/>
+		<R002G1D field="map" key="R002G1D"  type="date" descr="митна декларація дата"/>
+		<R002G2S field="map" key="R002G2S" type="date" descr="митна декларація номер"/>			
+		
+		<HFILL expr="Op.Date=cDate(left(&quot;@&quot;, 2) + chr(45) + mid(&quot;@&quot;, 3, 2) + chr(45) + right(&quot;@&quot;, 4)):Op.Date1=Op.Date" type="date" descr="Дата складання"/>
+		<HNUM expr="Op.DocNo=&quot;@&quot;&amp;&quot;/&quot;" descr="Порядковий номер"/>
+		<HNUM1 expr="Op.DocNo=Op.DocNo &amp;&quot;@&quot; + &quot;/&quot;" descr="(1)"/>
+		<HPODFILL field="map" key="HPODFILL" type="date" descr="дата складання ПН"/>
+		<HPODNUM expr="Op.String3 = @" descr="Порядковий номер ПН"/>
+		<HPODNUM1 expr="Op.String3=Op.String3&amp;iif(&quot;@&quot; &lt;&gt; &quot;&quot;, &quot;/&quot;, &quot;&quot;)" descr="Порядковий номер ПН"/>
+		<HPODNUM2 expr="Op.String3=Op.String3&amp;iif(&quot;@&quot; &lt;&gt;  &quot;&quot;, &quot;/&quot;, &quot;&quot;)" descr="Порядковий номер ПН"/>
+		<HNAMESEL field="map" key="HNAMESEL" descr="Постачальник (продавець):найменування; прізвище, ім'я, по батькові - для фізичної особи - підприємця"/>
+		<HNAMEBUY field="map" key="HNAMEBUY" descr="Отримувач (покупець):найменування; прізвище, ім'я, по батькові - для фізичної особи - підприємця"/>
+		<HKSEL expr="Op.Trans(1,1).AgFrom.VatNo"  descr=" Постачальник (продавець):індивідуальний податковий номер"/>
+		<HNUM2 field="map" key="HNUM2" descr="Постачальник (продавець):номер філії"/>
+		<HTINSEL expr="Op.Trans(1,1).AgFRom.Code" descr="Постачальник (продавець):Податковий номер платника податку або серія та/або номер паспорта"/>
+		<HKS field="map" key="HKS" descr="признак источники налогового номера в соответствии с реестром" nillable="true" minOccurs="0"/>
+		<HKBUY expr="Op.Trans(1,1).AgTo.VatNo" descr="Отримувач (покупець):індивідуальний податковий номер"/>
+		<HFBUY field="map" key="HFBUY"  descr="Отримувач (покупець):номер філії"/>
+		<HTINBUY expr="Op.Trans(1,1).AgTo.Code" descr="Отримувач (покупець):Податковий номер платника податку або серія та/або номер паспорта"/>
+		<HKB field="map" key="HK" descr="признак источники налогового номера в соответствии с реестром" nillable="true" minOccurs="0"/>
+		<R001G03 expr="Op.Sum=@" type="money" descr="Сума коригування податкового зобов'язання та податкового кредиту (-) (+)"/>
+		<R02G9 field="map" key="R02G9" descr="сума коригування податкового зобов'язання та податкового кредиту за основною ставкою"/> 
+		<R02G111 field="map" key="R02G111" descr="сума коригування податкового зобов'язання та податкового кредиту за ставкою 7 %"/> 
+
+		<R03G14 field="map" key="R03G14" descr="сума коригування податкового зобов'язання та податкового кредиту за ставкою 14 %"/> 
+		
+		<R01G9 field="map" key="R01G9" descr="Усього підлягають коригуванню обсяги постачання без урахування податку на додану вартість, що оподатковуються за основною ставкою (-) (+) (код ставки 20)"/> 
+		<R01G111 field="map" key="R01G111" descr="Усього підлягають коригуванню обсяги постачання без урахування податку на додану вартість, що оподатковуються за ставкою 7 % (-) (+) (код ставки 7)"/> 
+		
+		<R01G14 field="map" key="R01G14" descr="Усього підлягають коригуванню обсяги постачання без урахування податку на додану вартість, що оподатковуються за ставкою 14 % (-) (+) (код ставки 14)"/> 
+		
+		<R006G03 field="map" key="R006G03" descr="Усього підлягають коригуванню обсяги постачання без урахування податку на додану вартість, що оподатковуються за ставкою 0 % (-) (+) (код ставки 901)"/> 
+		<R007G03 field="map" key="R007G03" descr="Усього підлягають коригуванню обсяги постачання без урахування податку на додану вартість, що оподатковуються за ставкою 0 % (-) (+) (код ставки 902)"/> 
+		<R01G11 field="map" key="R01G11" descr="Усього підлягають коригуванню обсяги операцій, звільнених від оподаткування (-) (+) (код ставки 903)"/>
+
+		<REPEAT row="ROWNUM" transno="1" setagfrom="true" setagto="true">
+			<RXXXXG001 field="trans" key="Param(&quot;Количество&quot;).Value" type="int" descr="№ з/п рядка податкової накладної, що коригується або додається"/>
+			<RXXXXG21 field="trans" key="Misc(&quot;Типы причин для НН&quot;).Tag" descr="код причини"/>
+			<RXXXXG22 field="trans" key="Misc(&quot;Типы причин для НН&quot;).String1" descr="№ з/п групи коригування"/>
+			<RXXXXG3S field="trans" key="Entity.Name" descr="Опис(номенклатура) товарів/послуг, вартість чи кількість яких коригується"/>
+			<RXXXXG4 field="trans" key="Entity.Param(&quot;УКТ ЗЕД&quot;).Value" descr="УКТ ЗЕД"/>
+			<RXXXXG32 field="trans" key="Param(&quot;Tax&quot;).Value" type="int" descr="ознака імпортованого товару"/>
+			<RXXXXG4S field="trans" key="Unit.ShortName" descr="Одиниця виміру:умовне позначення"/>
+			<RXXXXG105_2S field="trans" key="Unit.Tag" descr="Одиниця виміру:код"/>
+			<RXXXXG5 field="trans" key="Param(&quot;Колонка 5&quot;).Value" type="money" descr="кількість, об'єм, обся"/>
+			<RXXXXG6 field="trans" key="Param(&quot;Колонка 6&quot;).Value" type="money" descr="ціна постачанн я товарів (послуг)"/>
+			<RXXXXG7 field="trans" key="Param(&quot;Колонка 7&quot;).Value" type="money" descr="ціна"/>
+			<RXXXXG8 field="trans" key="Param(&quot;Колонка 8&quot;).Value" type="money" descr="кількість постачання товарів (послуг)"/>
+			<RXXXXG008 field="trans" key="Misc(&quot;Ставка НДС&quot;).String1" descr="Код ставки "/>
+			<RXXXXG009 field="trans" key="Misc(&quot;Коды льгот для НН&quot;).Tag" descr="Код пільги"/>
+			<RXXXXG010 field="trans" key="Sum" type="money" descr="Обсяги постачання"/>
+			<RXXXXG11_10 field="trans" key="Param(&quot;Сумма&quot;).Value" type="money" descr="Сума податку на додану вартість"/>
+		</REPEAT> 
+		
+		<R0301G1D field="map" key="R0301G1D" type="date" descr="Інформаційні дані щодо складеної та зареєстрованої в Єдиному реєстрі податкових накладних податкової накладної:(дата складання)"/>
+		<R0301G2 field="map" key="R0301G2" descr="Інформаційні дані щодо складеної та зареєстрованої в Єдиному реєстрі податкових накладних податкової накладної:№ 1"/>
+		<R0301G3 field="map" key="R0301G3" descr="Інформаційні дані щодо складеної та зареєстрованої в Єдиному реєстрі податкових накладних податкової накладної:№ 2" />
+		<R0301G4 field="map" key="R0301G4" descr="Інформаційні дані щодо складеної та зареєстрованої в Єдиному реєстрі податкових накладних податкової накладної:№ 3"/>
+		<R0301G5 field="map" key="R0301G5" descr="Інформаційні дані щодо складеної та зареєстрованої в Єдиному реєстрі податкових накладних податкової накладної:реєстраційний номер податкової накладної"/>
+		<R0302G1D field="map" key="R0302G1D" type="date" descr="Інформаційні дані щодо складеного та зареєстрованого в Єдиному реєстрі податкових накладних розрахунку коригування:дата складання"/>
+		<R0302G2 field="map" key="R0302G2" descr="Інформаційні дані щодо складеного та зареєстрованого в Єдиному реєстрі податкових накладних розрахунку коригування:№ 1"/>
+		<R0302G3 field="map" key="R0302G3" descr="Інформаційні дані щодо складеного та зареєстрованого в Єдиному реєстрі податкових накладних розрахунку коригування:№ 2"/>
+		<R0302G4 field="map" key="R0302G4" descr="Інформаційні дані щодо складеного та зареєстрованого в Єдиному реєстрі податкових накладних розрахунку коригування:№ 3"/>
+		<R0302G5 field="map" key="R0302G5" descr="Інформаційні дані щодо складеного та зареєстрованого в Єдиному реєстрі податкових накладних розрахунку коригування:реєстраційний номер розрахунку коригування"/>
+
+		<HBOS field="map" key="HBOS" descr="Посадова (уповноважена) особа / фізична особа: ініціали та прізвище"/>
+		<HKBOS field="map" key="HKBOS" descr="Посадова (уповноважена) особа / фізична особа: реєстраційний номер облікової картки платника податків або серія та або номер паспорта"/>
+		<R003G10S field="map" key="R003G10S" descr="у разі відсутності пільги у довідниках податкових пільг ... "/>
+	</DECLARBODY>
+</DECLAR> 

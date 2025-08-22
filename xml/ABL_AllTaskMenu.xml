@@ -1,0 +1,128 @@
+﻿<OnAllTaskMenu ident="guid">
+
+	<HL74 kind="1" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" name_ua="Історія змін"/>
+	<HL74 kind="1" type="root" check="ABL_PasteCheck" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="1" type="0" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="1" type="0" module="ABL_RecurseCopy.avb" proc="ABL_RecurseCopy" name="Копировать элемент и вложенные" menulevel="1"/>
+	<HL74 kind="1" type="0" check="ABL_PasteCheck" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="1" type="0" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="1" type="0" module="ABL_ResaveDocs.avb" proc="ABL_ResaveDocs" name="Провести повторно" menulevel="1"/>
+	<HL74 kind="1" type="0" module="ABL_CopyDocs.avb" proc="ABL_CopyDocs" name="Копировать операции" menulevel="1" check="ABL_SelectedCheck"/>
+	<HL74 kind="1" type="0" module="ABL_UpdateDocs.adg" proc="" name="Групповое обновление операций" menulevel="1" />
+	<HL74 kind="1" type="0" menulevel="1" name="Импорт из клиент банка" proc="ABL_RunClientBank" module="ABL_ClientBank.avb" id="{guid {0A89B988-DAF8-4993-8341-219D4ADC2185}}"/>
+
+	<!--<HL74 kind="1" module="ABL_DocMultiImportExcel.avb" proc="DocsImportFromExcelFiles" name="Импорт документов из Excel файлов" menulevel = "1" />-->
+
+	<HL74 kind="2" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" name_ua="Історія змін"/>
+	<HL74 kind="2" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="2" module="ABL_ResaveDocs.avb" proc="ABL_ResaveDocs" name="Провести повторно" menulevel="1"/>
+	<HL74 kind="2" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="2" module="ABL_RWAddColumns.adg" proc="" name="Дополнительные параметры отчета" menulevel="1"/>
+
+	<HL74 kind="3" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" name_ua="Історія змін"/>
+	<HL74 kind="3" type="0" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="3" type="5" module="ABL_ResaveDocs.avb" proc="ABL_ResaveDocs" name="Провести повторно" menulevel="1"/>
+	<HL74 kind="3" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="3" module="ABL_ResaveDocs.avb" proc="ABL_ResaveDocs" name="Провести повторно" menulevel="1"/>
+	<HL74 kind="3" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="3" module="ABL_RWAddColumns.adg" proc="" name="Дополнительные параметры отчета" menulevel="1" />
+	<HL74 kind="3" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="3" module="ABL_ElemsFindReplace.adg" proc="" name="Замена корреспондента" menulevel="1" />
+
+	<HL74 kind="4" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" />
+	<HL74 kind="4" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="4" module="ABL_ResaveDocs.avb" proc="ABL_ResaveDocs" name="Провести повторно" menulevel="1"/>
+	<HL74 kind="4" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="4" module="ABL_RWAddColumns.adg" proc="" name="Дополнительные параметры отчета" menulevel="1" />
+
+	<HL74 kind="4" type="root" module="ABL_SetPriceKindsDisc.avb" proc="ABL_SetPriceKindsDisc" name="Сформировать цены" menulevel="1"/>
+	<HL74 kind="4" type="root" module="ABL_PrintPriceLabel.adg" proc="" name="Печать ценников" menulevel="1"/>
+	<HL74 kind="4" type="root" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="4" type="root" module="ABL_ElemGrpManagment.adg" proc="" name="Управление группой объектов учета" menulevel="1"/>
+	<HL74 kind="4" type="root" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="4" type="root" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1" check="ABL_PasteCheck" />
+	<!--
+	<HL74 kind="4" type="0" module="ABL_SetPriceKindsDisc.avb" proc="ABL_SetPriceKindsDisc" name="Сформировать цены" menulevel="1"/>
+	<HL74 kind="4" type="0" module="ABL_PrintPriceLabel.adg" proc="" name="Печать ценников" menulevel="1"/>
+	<HL74 kind="4" type="0" module="ABL_PrintPriceList.adg" proc="" name="Печать прайс-листа" menulevel="1"/>
+	<HL74 kind="4" type="0" module="" proc="" name="-" menulevel="1"/>
+	-->
+	<HL74 kind="4" type="0" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="4" type="0" module="ABL_RecurseCopy.avb" proc="ABL_RecurseCopy" name="Копировать элемент и вложенные" menulevel="1"/>
+	<HL74 kind="4" type="0" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1" check="ABL_PasteCheck" />
+	
+	<HL74 kind="4" type="1" module="ABL_SetPriceKindsDisc.avb" proc="ABL_SetPriceKindsDisc" name="Сформировать цены" menulevel="1"/>
+	<HL74 kind="4" type="1" module="ABL_PrintPriceLabel.adg" proc="" name="Печать ценников" menulevel="1"/>
+	<HL74 kind="4" type="1" module="ABL_PrintPriceList.adg" proc="" name="Печать прайс-листа" menulevel="1"/>
+	<HL74 kind="4" type="1" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="4" type="1" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="4" type="1" module="ABL_RecurseCopy.avb" proc="ABL_RecurseCopy" name="Копировать элемент и вложенные" menulevel="1"/>
+	<HL74 kind="4" type="1" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1" check="ABL_PasteCheck" />
+
+	<HL74 kind="4" type="1001" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1002" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1003" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1004" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1005" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1006" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1007" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1008" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1009" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1010" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1011" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1012" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+	<HL74 kind="4" type="1013" module="ABL_EntCopy.avb" proc="ABL_EntityCopy" name="Клонировать объект учета" menulevel="1"/>
+
+	<HL74 kind="5" type="-1" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="5" type="0" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="5" type="0" module="ABL_RecurseCopy.avb" proc="ABL_RecurseCopy" name="Копировать элемент и вложенные" menulevel="1"/>
+	<HL74 kind="5" type="0" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1" check="ABL_PasteCheck" />
+	
+	<!--
+	<HL74 kind="5" type="1" module="Cipher_LoadRest.adg" proc="" name="Загрузить остатки в ТСД" menulevel = "1" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="" proc="" name="Загрузить в ТСД задачу" menulevel = "1" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="ABL_TCD.avb" proc="LoadTask1" name="Проверка отгрузки" menulevel = "2" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="ABL_TCD.avb" proc="LoadTask2" name="Регистрация поступления" menulevel = "2" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="ABL_TCD.avb" proc="LoadTask3" name="Заказ клиента" menulevel = "2" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="ABL_TCD.avb" proc="LoadTask4" name="Инвентаризация" menulevel = "2" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="" proc="" name="Импорт из ТСД документов" menulevel = "1" msctag="CIPHER" idbytag="CIPHER1"/>
+	<HL74 kind="5" type="1" module="ABL_TCD.avb" proc="LoadDocs" name="Приходные документы" menulevel = "2" msctag="CIPHER" idbytag="CIPHER1"/>
+	-->
+	
+	<HL74 kind="5" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" name_ua="Історія змін"/>
+	<HL74 kind="5" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="5" module="ABL_RWAddColumns.adg" proc="" name="Дополнительные параметры отчета" menulevel="1"/>
+
+	<!--
+	<HL74 menulevel="1" msctag="ТО" name="Загрузить прайс в ЭККА" proc="ABL_LoadEntsPrices" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="Загрузить остатки в ЭККА" proc="" module="" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="2" msctag="ТО" name="Загрузить остатки по цене прайса в ЭККА" proc="ABL_LoadEntsRestPrice" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="2" msctag="ТО" name="Загрузить остатки в ЭККА" proc="ABL_LoadEntsRest" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="-" proc="" module="" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="Загрузить продажи из ЭККА" proc="ABL_LoadSales" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="Загрузить продажи из файла" proc="ABL_LoadSalesFromFile" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="-" proc="" module="" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="Сброс артикулов" proc="ABL_ClearArticles" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="-" proc="" module="" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	<HL74 menulevel="1" msctag="ТО" name="Настройка ЭККА" proc="ABL_M130_Config" module="ABL_MercuryOffLine.avb" type="1" kind="5" id="{guid {0E8BE948-738A-4CF2-852C-008421F15F1A}}"/>
+	-->
+	
+	<HL74 kind="6" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" name_ua="Історія змін"/>
+	<HL74 kind="6" type="1" module="ABL_DocsMerge.adg" proc="" name="Создать объединенный документ" menulevel="1"/>
+	<HL74 kind="6" type="1" module="ABL_ClearBinder.avb" proc="ABL_ClearBinder" name="Очистить подшивку" menulevel="1"/>
+
+	<HL74 kind="7" module="ABL_ItemSysLog.adg" proc="" name="История изменений" menulevel = "1" name_ua="Історія змін"/>
+	<HL74 kind="7" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="7" module="ABL_ResaveDocs.avb" proc="ABL_ResaveDocs" name="Провести повторно" menulevel="1"/>
+	<HL74 kind="7" type="1" module="ABL_Workarea.avb" proc="ABL_TemplateProps" name="Дополнительные свойства шаблона" menulevel="1"/>
+	<HL74 kind="7" type="1" module="" proc="" name="-" menulevel="1"/>
+	<HL74 kind="7" type="1" module="ABL_RecurseCopy.avb" proc="ABL_RecurseCopy" name="Копировать элемент и вложенные" menulevel="1"/>
+	<HL74 kind="7" type="0" module="ABL_Workarea.avb" proc="ABL_DeleteElemRecursive" name="Удалить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="7" type="0" module="ABL_RecurseCopy.avb" proc="ABL_RecurseCopy" name="Копировать элемент и вложенные" menulevel="1"/>
+	<HL74 kind="7" type="0" check="ABL_PasteCheck" module="ABL_RecurseCopy.avb" proc="ABL_RecursePaste" name="Вставить элемент и вложенные" menulevel="1"/>
+	<HL74 kind="7" type="1" module="ABL_AddOpToBinder.avb" proc="ABL_SetBindersDlg" name="Связать шаблон и подшивки" menulevel="1"/>
+
+
+	
+
+</OnAllTaskMenu>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:noNamespaceSchemaLocation="F0103203.XSD" TEXT=" ">
+<!--Податкова декларація платника єдиного податку третьої групи на період дії воєнного, надзвичайного стану в Україні. Наказ Міністерства фінансів України 26.04.2022 року № 124</documentation-->
+<DECLAR xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <DECLARHEAD text=" ">
+        <TIN field="map" key="TIN" type="DGLong"/>
+        <C_DOC field="map" key="C_DOC"  type="xs:string" fixed="F01"/>
+        <C_DOC_SUB field="map" key="<C_DOC_SUB"  type="xs:string" fixed="032"/>
+        <C_DOC_VER field="map" key="C_DOC_VER"  type="xs:string" fixed="3"/>
+        <C_DOC_TYPE field="map" key="C_DOC_TYPE"  type="xs:nonNegativeInteger"/>
+        <C_DOC_CNT field="map" key="C_DOC_CNT"  type="xs:nonNegativeInteger"/>
+        <C_REG field="map" key="<C_REG"  type="DGsti"/>
+        <C_RAJ field="map" key="C_RAJ"  type="DGsti"/>
+        <PERIOD_MONTH field="map" key="PERIOD_MONTH"  type="DGMonth"/>
+        <PERIOD_TYPE field="map" key="PERIOD_TYPE"  type="DGPType"/>
+        <PERIOD_YEAR field="map" key="PERIOD_YEAR"  type="DGYear"/>
+        <C_STI_ORIG field="map" key="<C_STI_ORIG"  type="DGc_dpi"/>
+        <C_DOC_STAN field="map" key="<C_DOC_STAN"  type="DGSTAN"/>
+        <LINKED_DOCS/>
+        <D_FILL field="map" key="D_FILL"/>
+        <SOFTWARE text="Акцент"/>
+    </DECLARHEAD>
+
+	<DECLARBODY text=" ">
+        <choice>
+            <HZ field="map" key="HZ" />
+            <HZN field="map" key="HZN"/>
+            <HZU field="map" key="HZU"/>
+        </choice>
+        <HZM field="map" key="HZM" type="DGMonth"/>
+        <HZY field="map" key="HZY" type="DGYear"/>
+        <HZMP field="map" key="HZMP" type="DGMonth" nillable="true" minOccurs="0"/>
+        <HZYP field="map" key="HZYP" type="DGYear" nillable="true" minOccurs="0"/>
+        <HSTI field="map" key="HSTI" type="DGHSTI"/>
+        <HNAME field="map" key="HNAME" type="DGHNAME"/>
+        <HTIN field="map" key="HTIN" type="DGHTINF"/>
+        <HLOC field="map" key="HLOC" type="DGHLOC"/>
+        <HEMAIL field="map" key="HEMAIL" type="DGHEMAIL" nillable="true" minOccurs="0"/>
+        <HTEL field="map" key="HTEL" type="DGHTEL" nillable="true" minOccurs="0"/>
+        <!--BODY-->
+        <R001G3 field="map" key="R001G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R002G3 field="map" key="R002G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R003G3 field="map" key="R003G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R004G3 field="map" key="R004G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R005G3 field="map" key="R005G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R006G3 field="map" key="R006G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R007G3 field="map" key="R007G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <R008G3 field="map" key="R008G3" type="DGdecimal2" nillable="true" minOccurs="0"/>
+        <HJAR field="map" key="HJAR" type="DGInom" nillable="true" minOccurs="0"/>
+        <!--TABLE №1-->
+        <T1RXXXXG2S field="ma" key="T1RXXXXG2S" type="StrColumn" nillable="true" minOccurs="0" maxOccurs="9999"/>
+        <!--/TABLE №1-->
+        <HD1 field="map" key="HD1" type="DGchk" nillable="true" minOccurs="0"/>
+        <HD2 field="map" key="HD2" type="DGchk" nillable="true" minOccurs="0"/>
+        <HD21 field="map" key="HD21" type="DGchk" nillable="true" minOccurs="0"/>
+        <!--FOOTER-->
+        <HFILL field="map" key="HFILL" type="DGDate"/>
+        <HBOS field="map" key="HBOS" type="DGHBOS"/>
+        <HKBOS field="map" key="HKBOS" type="DGDRFO_10"/>
+        <HBUH field="map" key="HBUH" type="DGHBUH" nillable="true" minOccurs="0"/>
+        <HKBUH field="map" key="HKBUH" type="DGDRFO_10" nillable="true" minOccurs="0"/>
+	</DECLARBODY>
+</DECLAR>
+
+<!--Розробник: відділ проектування та розробки АІС ГУ ДПС у Черкаській області-->

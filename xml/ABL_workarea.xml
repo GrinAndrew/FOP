@@ -1,0 +1,65 @@
+<Workarea ident="guid" ver="001" >
+
+	<OnProperties>
+		<HL74 kind="4" type="1006" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1007" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1008" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1009" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1010" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1011" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1012" module="ABL_AssetsProps.adg" proc="" />
+		<HL74 kind="4" type="1013" module="ABL_AssetsProps.adg" proc="" />
+
+		<HL74 kind="3" type="4" module="ABL_AgProps.avb" proc="ABL_AgProps"/>
+		<HL74 kind="3" type="1" module="ABL_AgProps.avb" proc="ABL_AgProps"/>
+		<HL74 kind="3" type="5" module="ABL_MCProps.adg" proc=""/>
+		
+		<HL74 kind="5" type="1" module="ABL_TradeEqProps.avb" proc="ABL_CashPrintProps" msctag="TREQ"/>
+		<HL74 kind="5" type="1" module="ABL_DiscountProps.adg" proc="" msctag="DSC"/>
+		<HL74 kind="5" type="1" module="ABL_AgreeProps.adg" proc="" msctag="AGREE"/>
+		
+		<!--<HL74 kind="5" type="1" module="Cipher_Setup.adg" proc="" msctag="CIPHER1"/>-->
+		
+		<HL74 kind="12" module="ABL_DBProps.adg" proc=""/>
+
+	</OnProperties>
+	<OnLoad>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_OnLoad"/>
+	</OnLoad>
+	<AfterCreate>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_AfterCreate"/>
+		<HL74 module="ABL_SysLog.avb" proc="Log_CreateItem"/>
+		<HL74 kind="4" type="1004" module="ABL_SetNewCode.avb" proc="SetNextCodes"/>
+		<HL74 kind="4" type="1004" module="ABL_CreateBarCode.avb" proc="EAN_SetEntBarCode" check="EAN_SetBarCodeEnabled()"/>
+		</AfterCreate>
+	<OnPopup>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_OnPopup"/>
+	</OnPopup>
+	<OnReportStart>
+		<HL74 module="ABL_RWAddColumns.avb" proc="ABL_RWAddColumns"/>
+		<HL74 module="ABL_SysLog.avb" proc="Log_AddReportStartEvent" />
+	</OnReportStart>
+	<CanToTrash>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_CanToTrash"/>
+	</CanToTrash>
+	<OnTemplateScriptChanged>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_OnTemplateScriptChanged"/>
+		<HL74 module="ABL_SysLog.avb" proc="Log_UpdateItem"/>
+
+	</OnTemplateScriptChanged>
+	<CanDelete>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_CanDelete"/>
+	</CanDelete>
+	<BeforeClose>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_BeforeClose"/>
+	</BeforeClose>
+	<OnChanged>
+		<HL74 module="ABL_Workarea.avb" proc="ABL_OnChanged"/>
+		<HL74 module="ABL_SysLog.avb" proc="Log_UpdateItem"/>
+	</OnChanged>
+	<OnShowWebTab>
+		<!--<HL74 kind="4" type="1004" module="ABL_WebGoods.avb" proc="ABL_OnShowGood" />-->
+		<!--HL74 module="ABL_WebGoods.avb" proc="ABL_OnShowGood" /-->
+		
+	</OnShowWebTab>
+</Workarea>

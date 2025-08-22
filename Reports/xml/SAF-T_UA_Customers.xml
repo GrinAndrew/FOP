@@ -1,0 +1,68 @@
+<Customers minOccurs="0">
+	<Customer>
+        <RegistrationNumber expr="agent.code" minOccurs="0"/>
+        <Name expr="agent.fullname"/>
+        <Address minOccurs="0">
+            <StreetName expr="agent.address.street" type="SAFmiddle2textType" minOccurs="0"/>
+            <Number expr="agent.address.number" type="SAFshorttextType" minOccurs="0"/>
+            <AdditionalAddressDetail expr="agent.address.memo" type="SAFmiddle2textType" minOccurs="0"/>
+            <Building expr="agent.address.building" type="SAFmiddle1textType" minOccurs="0"/>
+            <City expr="agent.address.city" type="SAFmiddle1textType" minOccurs="0"/>
+            <PostalCode expr="agent.address.postalcode" type="SAFshorttextType" minOccurs="0"/>
+            <Region expr="agent.address.region" type="SAFmiddle1textType" minOccurs="0"/>
+            <Country expr="agent.address.country" />
+            <AddressType expr="agent.address.type" minOccurs="0"/>
+        <Address />
+
+        <ContactPerson>
+            <Title expr="agent.contact.position" "SAFlongtextType" minOccurs="0"/>
+            <FirstName expr="agent.contact.firstname" type="SAFmiddle1textType"/>
+            <Initials expr="agent.contact.initials" type="SAFshorttextType" minOccurs="0"/>
+            <lastnameprefix expr="agent.contact.lastnameprefix" type="SAFshorttextType" minOccurs="0"/>
+            <LastName expr="agent.contact.lastname" type="SAFmiddle2textType"/>
+            <BirthName  expr="agent.contact.birthday" type="SAFmiddle2textType" minOccurs="0"/>
+            <Salutation expr="agent.contact.salutation" type="SAFshorttextType" minOccurs="0"/>
+            <OtherTitles expr="agent.contact.othertitles" type="SAFlongtextType" minOccurs="0" maxOccurs="unbounded"/>
+        </ContactPerson>
+
+        <Telephone expr="agent.contact.phone"  minOccurs="0"/>
+        <Fax expr="agent.contact.fax"  type="SAFshorttextType" minOccurs="0"/>
+        <Email expr="agent.contact.email"  minOccurs="0"/>
+        <Website expr="agent.contact.www"  type="xs:anyURI" minOccurs="0"/>
+
+        <TaxRegistration minOccurs="0">
+            <TaxRegistrationNumber expr="agent.taxreg.regnumber" type="SAFmiddle1textType"/>
+            <TaxType expr="agent.taxreg.type" minOccurs="0"/>
+            <TaxNumber expr="agent.taxreg.number" type="SAFmiddle1textType" minOccurs="0"/>
+            <TaxAuthority expr="agent.taxreg.dpsname" type="SAFmiddle1textType" minOccurs="0"/>
+            <TaxVerificationDate expr="agent.taxreg.date" type="SAFdateType" minOccurs="0"/>
+        </TaxRegistration>
+
+        <BankAccount>
+            <IBANNumber expr="agent.bankaccounts.iban" type="SAFmiddle1textType"/>
+        </BankAccount>
+
+        <CustomerID expr="agent.id"/>
+        <CustomerType expr="agent.type" type="SAFmiddle1textType" minOccurs="0" maxOccurs="unbounded"/>
+        <RelatedPartyCode expr="agent.relationcode" minOccurs="0" maxOccurs="unbounded"/>
+        <CustomerBalance maxOccurs="unbounded"/>
+
+        <SelfBillingIndicator expr="agent.selgbillingindicator" minOccurs="0"/>
+        <AccountID expr="agent.accounts.code"/>
+            <choice>
+			    <OpeningDebitBalance expr="agent.accounts.StartDb" minOccurs="0"/>
+                <OpeningDebitBalance expr="agent.accounts.StartCr" minOccurs="0"/>
+            </choice>
+
+			<DebitTurnover expr="agent.accounts.TurnDb" minOccurs="0"/>
+			<CreditTurnover expr="agent.accounts.TurnCr" minOccurs="0"/>
+
+			<choice minOccurs="0">
+				<ClosingDebitBalance expr="agent.accounts.EndDb"/>
+				<ClosingCreditBalance  expr="agent.accounts.EndCr"/>
+			</choice>	
+
+			<xs:element ref="OpenInvoices" minOccurs="0" maxOccurs="unbounded">
+		</AccountID>
+    </Customer>
+</Customers>
